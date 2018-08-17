@@ -27,7 +27,7 @@ def createProjectAt(projectPath):
         i += 1
 
 
-def createFolder(dirPath, folderName, isProject = False):
+def createFolder(dirPath, folderName, isProject=False):
     desDir = dirPath + "\\" + folderName + "\\"
     try:
         if isProject:
@@ -83,7 +83,8 @@ def checkFolderName(folderName):
 
 
 def wantsToReplace():
-    retVal = input("There is already a project with the same name.\nDo you want to replace it?(y/n) ")
+    retVal = input("There is already a project with the same name.\n"
+                   "Do you want to replace it?(y/n) ")
     while (retVal.lower() != "y" and retVal.lower() != "n"):
         print("Please Try Again")
         retVal = input("Do you want to replace it?(y/n) ")
@@ -92,8 +93,6 @@ def wantsToReplace():
     else:
         retVal = False
     return retVal
-
-
 
 
 if(__name__ == '__main__'):
