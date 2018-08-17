@@ -30,23 +30,23 @@ def createProjectAt(projectPath):
 def createFolder(dirPath, folderName, isProject = False):
     desDir = dirPath + "\\" + folderName + "\\"
     try:
-    	if isProject:
-	        if not os.path.exists(desDir):
-	            os.makedirs(desDir)
-	        else:
-	        	wTr = wantsToReplace()
-	        	if wTr:
-	        		print("Replaced It!!")
-	        		shutil.rmtree(desDir)
-	        		os.makedirs(desDir)
-	        	else:
-	        		print("Did Not Replace It!!")
-    	else:
-	        if not os.path.exists(desDir):
-	            os.makedirs(desDir)
-	        foldName = checkFolderName(folderName)
-	        if foldName is not None:
-	        	createFile(desDir, foldName)
+        if isProject:
+            if not os.path.exists(desDir):
+                os.makedirs(desDir)
+            else:
+                wTr = wantsToReplace()
+                if wTr:
+                    print("Replaced It!!")
+                    shutil.rmtree(desDir)
+                    os.makedirs(desDir)
+                else:
+                    print("Did Not Replace It!!")
+        else:
+            if not os.path.exists(desDir):
+                os.makedirs(desDir)
+            foldName = checkFolderName(folderName)
+            if foldName is not None:
+                createFile(desDir, foldName)
     except OSError:
         print("OSError occured for given folder path " + desDir)
 
@@ -55,43 +55,43 @@ def createFile(filePath, fileName):
     finFilePath = os.path.join(filePath, fileName)
     textToWrite = None
     if fileName == "setup.py":
-    	textToWrite = "Package and distribution management."
+        textToWrite = "Package and distribution management."
     elif fileName == "sample.py":
-    	textToWrite = "The code of interest."
+        textToWrite = "The code of interest."
     elif fileName == "test_sample.py":
-    	textToWrite = "Package integration and unit tests."
+        textToWrite = "Package integration and unit tests."
     elif fileName == "requirements.txt":
-    	textToWrite = "Development dependencies."
+        textToWrite = "Development dependencies."
     elif fileName == "LICENSE.txt":
-    	textToWrite = "Lawyering up."
+        textToWrite = "Lawyering up."
     elif fileName == "Makefile.txt":
-    	textToWrite = "Generic management tasks."
+        textToWrite = "Generic management tasks."
     fileOBJ = open(finFilePath, "w+")
     if textToWrite is not None:
-    	fileOBJ.write(textToWrite)
+        fileOBJ.write(textToWrite)
     fileOBJ.close()
 
 
 def checkFolderName(folderName):
-	if(folderName == "docs"):
-		retVal = None
-	elif(folderName == "src"):
-		retVal = "sample.py"
-	elif(folderName == "test"):
-		retVal = "test_sample.py"
-	return retVal
+    if(folderName == "docs"):
+        retVal = None
+    elif(folderName == "src"):
+        retVal = "sample.py"
+    elif(folderName == "test"):
+        retVal = "test_sample.py"
+    return retVal
 
 
 def wantsToReplace():
-	retVal = input("There is already a project with the same name.\nDo you want to replace it?(y/n) ")
-	while (retVal.lower()!="y" and retVal.lower()!="n"):
-		print("Please Try Again")
-		retVal = input("Do you want to replace it?(y/n) ")
-	if retVal.lower() == "y":
-		retVal = True
-	else:
-		retVal = False
-	return retVal
+    retVal = input("There is already a project with the same name.\nDo you want to replace it?(y/n) ")
+    while (retVal.lower()!="y" and retVal.lower()!="n"):
+        print("Please Try Again")
+        retVal = input("Do you want to replace it?(y/n) ")
+    if retVal.lower() == "y":
+        retVal = True
+    else:
+        retVal = False
+    return retVal
 
 
 
