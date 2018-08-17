@@ -73,11 +73,11 @@ def createFile(filePath, fileName):
 
 
 def checkFolderName(folderName):
-    if(folderName == "docs"):
+    if folderName == "docs":
         retVal = None
-    elif(folderName == "src"):
+    elif folderName == "src":
         retVal = "sample.py"
-    elif(folderName == "test"):
+    elif folderName == "test":
         retVal = "test_sample.py"
     return retVal
 
@@ -85,7 +85,7 @@ def checkFolderName(folderName):
 def wantsToReplace():
     retVal = input("There is already a project with the same name.\n"
                    "Do you want to replace it?(y/n) ")
-    while (retVal.lower() != "y" and retVal.lower() != "n"):
+    while retVal.lower() != "y" and retVal.lower() != "n":
         print("Please Try Again")
         retVal = input("Do you want to replace it?(y/n) ")
     if retVal.lower() == "y":
@@ -95,5 +95,5 @@ def wantsToReplace():
     return retVal
 
 
-if(__name__ == '__main__'):
+if __name__ == '__main__':
     SetupParser()
