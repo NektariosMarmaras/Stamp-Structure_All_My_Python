@@ -20,11 +20,11 @@ def createProjectAt(projectPath):
     i = 0
     while i < 3:
         createFolder(finProjPath, folderNames[i])
-        i+=1
+        i += 1
     i = 0
     while i < 4:
         createFile(finProjPath, fileNames[i])
-        i+=1
+        i += 1
 
 
 def createFolder(dirPath, folderName, isProject = False):
@@ -84,7 +84,7 @@ def checkFolderName(folderName):
 
 def wantsToReplace():
     retVal = input("There is already a project with the same name.\nDo you want to replace it?(y/n) ")
-    while (retVal.lower()!="y" and retVal.lower()!="n"):
+    while (retVal.lower() != "y" and retVal.lower() != "n"):
         print("Please Try Again")
         retVal = input("Do you want to replace it?(y/n) ")
     if retVal.lower() == "y":
@@ -96,5 +96,5 @@ def wantsToReplace():
 
 
 
-if(__name__=='__main__'):
+if(__name__ == '__main__'):
     SetupParser()
