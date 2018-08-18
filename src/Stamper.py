@@ -1,18 +1,10 @@
 import os
-import argparse
 import shutil
-
-
-def setup_parser():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("Path", type=str, help="The Desired Path")
-    args = parser.parse_args()
-    create_project_at(args.Path)
 
 
 def create_project_at(project_path):
     folder_names = ["docs", "src", "test"]
-    file_names = ["setup.py", "LICENSE.txt", "requirements.txt", "Makefile.txt"]
+    file_names = ["setup.py", "LICENSE.txt", "requirements.txt", "Makefile"]
     project_name = input("What is the name of the project? ")
     print(project_path + "\\" + project_name)
     create_folder(project_path, project_name, True)
@@ -93,7 +85,3 @@ def wants_to_replace():
     else:
         ret_val = False
     return ret_val
-
-
-if __name__ == '__main__':
-    setup_parser()
