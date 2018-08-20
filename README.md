@@ -6,6 +6,6 @@ Stamp initializes your project with the folder structure recommended in [The Hit
 In order to setup the Stamp project you just have to download and save it in your PC.
 To run it open the cmd inside the "src" folder of the project and type
 ```
-python Stamper.py ../path/that/you/want/to/create/a/new/project/
+python stamp.py ../path/that/you/want/to/create/a/new/project/
 ```
 and the click "Enter". Once it starts running, you will be asked for the project's name. If another project with the same name exists in the given path it will ask you if you want it to be replaced by the new project.
