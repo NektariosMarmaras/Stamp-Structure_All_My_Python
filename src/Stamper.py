@@ -11,6 +11,9 @@ def get_user_input(message):
         return raw_input(message)
 
 
+ptl = ""
+
+
 def create_project_at(project_path):
     folder_names = ["docs", "src", "test"]
     file_names = ["setup.py", "LICENSE.txt", "requirements.txt", "Makefile"]
@@ -48,6 +51,7 @@ def create_folder(dir_path, folder_name, is_project=False):
 
 
 def create_file(file_path, file_name):
+    global ptl
     fin_file_path = os.path.join(file_path, file_name)
     file_contents = {
         "setup.py": "Package and distribution management.",
@@ -82,3 +86,7 @@ def wants_to_replace():
             "Do you want to replace it? (y/n) "
         )
     return ret_val.lower() == "y"
+
+
+def get_project_license_path():
+    return ptl
