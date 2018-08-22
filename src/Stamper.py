@@ -53,6 +53,8 @@ def create_folder(dir_path, folder_name, is_project=False):
 def create_file(file_path, file_name):
     global ptl
     fin_file_path = os.path.join(file_path, file_name)
+    if file_name == "LICENSE.txt":
+        ptl = fin_file_path
     file_contents = {
         "setup.py": "Package and distribution management.",
         "sample.py": "The code of interest.",
