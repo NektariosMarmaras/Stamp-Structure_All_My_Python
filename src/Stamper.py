@@ -2,6 +2,9 @@ import os
 import shutil
 
 
+ptl = ""
+
+
 def create_project_at(project_path):
     folder_names = ["docs", "src", "test"]
     file_names = ["setup.py", "LICENSE.txt", "requirements.txt", "Makefile"]
@@ -10,11 +13,11 @@ def create_project_at(project_path):
     create_folder(project_path, project_name, True)
     fin_proj_path = project_path + "\\" + project_name + "\\"
     i = 0
-    while i < 3:
+    while i < len(folder_names):
         create_folder(fin_proj_path, folder_names[i])
         i += 1
     i = 0
-    while i < 4:
+    while i < len(file_names):
         create_file(fin_proj_path, file_names[i])
         i += 1
 
@@ -44,7 +47,10 @@ def create_folder(dir_path, folder_name, is_project=False):
 
 
 def create_file(file_path, file_name):
+    global ptl
     fin_file_path = os.path.join(file_path, file_name)
+    if file_name == "LICENSE.txt":
+        ptl = fin_file_path
     test_to_write = None
     if file_name == "setup.py":
         test_to_write = "Package and distribution management."
@@ -85,3 +91,7 @@ def wants_to_replace():
     else:
         ret_val = False
     return ret_val
+
+
+def get_project_license_path():
+    return ptl
