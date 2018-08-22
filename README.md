@@ -8,4 +8,4 @@ To run it open the cmd inside the "src" folder of the project and type
 ```
 python stamp.py ../path/that/you/want/to/create/a/new/project/
 ```
-and the click "Enter". Once it starts running, you will be asked for the project's name. If another project with the same name exists in the given path it will ask you if you want it to be replaced by the new project.
+and then click "Enter". Once it starts running, you will be asked for the project's name. If another project with the same name exists in the given path it will ask you if you want it to be replaced by the new project.
