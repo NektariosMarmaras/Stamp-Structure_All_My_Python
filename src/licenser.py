@@ -1,51 +1,66 @@
 import os
 import mmap
 import datetime
-import Stamper
+
+import stamper
+import user_input
 
 
-def choose_a_license():
-    fsl = find_selected_license()
-    print("\nAvailable licenses for immediate use: ")
-    for index, lic_item in enumerate(fsl):
-        print(str(index) + ") " + str(lic_item))
-    lic_index = input("\nIf you want to have a license other than those we have you can search for one at :\n"
-                      "1) https://opensource.org/licenses\n"
-                      "2) https://choosealicense.com/\n"
-                      "\nPlease select the desirable license[0-" + str((len(fsl)-1)) + "] or\n"
-                      "press 'c' if you want to add another license. ")
-    if lic_index is not 'c':
-        file_lines = []
-        selected_license = fsl[int(lic_index)]
-        licence_name = find_selected_license(selected_license)
-        copy_txt_from_selected_license(licence_name)
+def choose_a_license(license_path):
+    """Prompts the user to select a license."""
+
+    licenses = get_available_licenses()
+    print("\nAvailable licenses for immediate use:")
+    for index, license in enumerate(licenses):
+        print("{index}\t{license}".format(
+            index=index,
+            license=license,
+        ))
+    print(
+        "\nIf you want to have a license not on that list, you can search for one at:\n"
+        "https://opensource.org/licenses\n"
+        "https://choosealicense.com\n"
+    )
+
+    license_prompt = (
+        "Please select the desired license (0-{max}) or press 'c' to skip and add your own: ".format(
+            max=len(licenses) - 1,
+        )
+    )
+    choice = user_input.get_user_input(license_prompt)
+    while choice not in ["c"] + [str(opt) for opt in range(len(licenses))]:
+        print("Invalid input. Please try again.")
+        choice = user_input.get_user_input(license_prompt)
+
+    if choice != "c":
+        copy_txt_from_selected_license(license_path, licenses[int(choice)])
 
 
-def find_selected_license(sel_lic_name = None):
-    lic_names = []
-    for diname, subdirnames, filenames in os.walk('LICENSES'):
-        for file_name in filenames:
-            lic_name = os.path.splitext(file_name)[0]
-            if sel_lic_name is None:
-                lic_names.append(lic_name)
-            else:
-                if lic_name == sel_lic_name:
-                    print('lic_name ' +lic_name)
-                    return lic_name
-    return lic_names
+def get_available_licenses():
+    """Searches for and returns a list of available licenses, sorted alphabetically."""
+
+    return sorted([
+        os.path.splitext(os.path.basename(license))[0] for license in os.listdir("data/licenses")
+    ])
 
 
-def copy_txt_from_selected_license(lic_name):
-    year_str = '<YEAR>'
-    copyright_holder_str = '<COPYRIGHT HOLDER>'
-    tlf = Stamper.get_project_license_path()
-    now = datetime.datetime.now()
-    with open("./LICENSES/" + lic_name + ".txt", "r") as source_license_file:
-        with open(tlf, "w") as target_license_file:
-            for line in source_license_file:
-                if year_str in line:
-                    line = line.replace(year_str, str(now.year))
-                if copyright_holder_str in line:
-                    holder_name = input("What's your github username? ")
-                    line = line.replace(copyright_holder_str, holder_name)
-                target_license_file.write(line)
+
+def copy_txt_from_selected_license(license_path, license_name):
+    """Copies the license template file, with user customization, to the project structure."""
+
+    license_source_filename = "data/licenses/{license_name}.txt".format(
+        license_name=license_name,
+    )
+    with open(license_source_filename, "r") as license_source_file:
+        license_content = license_source_file.read()
+
+    year_placeholder = "<YEAR>"
+    copyright_placeholder = "<COPYRIGHT HOLDER>"
+    if year_placeholder in license_content:
+        license_content = license_content.replace(year_placeholder, str(datetime.datetime.now().year))
+    if copyright_placeholder in license_content:
+        copyright_holder = user_input.get_user_input("What is your name or GitHub username? ")
+        license_content = license_content.replace(copyright_placeholder, copyright_holder)
+
+    with open(license_path, "w") as license_target_file:
+        license_target_file.write(license_content)

@@ -1,0 +1,62 @@
+{
+    "license_path": "LICENSE.txt",
+    "structure": [
+        {
+            "name": "Makefile",
+            "is_file": true,
+            "contents": "Generic management tasks"
+        },
+        {
+            "name": "requirements.txt",
+            "is_file": true,
+            "contents": "Development dependencies"
+        },
+        {
+            "name": "setup.py",
+            "is_file": true,
+            "contents": "Package and distribution management"
+        },
+        {
+            "name": "LICENSE.txt",
+            "is_file": true,
+            "contents": "Lawyering up"
+        },
+        {
+            "name": "src",
+            "is_file": false,
+            "children": [
+                {
+                    "name": "sample.py",
+                    "is_file": true,
+                    "contents": "The code of interest"
+                },
+                {
+                    "name": "__init__.py",
+                    "is_file": true,
+                    "contents": "Init file"
+                }
+            ]
+        },
+        {
+            "name": "test",
+            "is_file": false,
+            "children": [
+                {
+                    "name": "test_sample.py",
+                    "is_file": true,
+                    "contents": "Package integration and unit tests"
+                },
+                {
+                    "name": "__init__.py",
+                    "is_file": true,
+                    "contents": "Init file"
+                }
+            ]
+        },
+        {
+            "name": "docs",
+            "is_file": false,
+            "children": []
+        }
+    ]
+}
