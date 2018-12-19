@@ -20,4 +20,3 @@ def wants_to_replace():
             "Do you want to replace it? (Y/N) "
         ).lower()
     return choice == "y"
-

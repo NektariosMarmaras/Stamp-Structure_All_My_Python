@@ -1,5 +1,7 @@
 {
     "license_path": "LICENSE.txt",
+    "readme_path": "README.txt",
+    "setup_py_path": "setup.py",
     "structure": [
         {
             "name": "Makefile",
@@ -22,8 +24,14 @@
             "contents": "Lawyering up"
         },
         {
+            "name": "README.txt",
+            "is_file": true,
+            "contents": "Project Description"
+        },
+        {
             "name": "src",
             "is_file": false,
+            "is_package": true,
             "children": [
                 {
                     "name": "sample.py",
@@ -33,13 +41,14 @@
                 {
                     "name": "__init__.py",
                     "is_file": true,
-                    "contents": "Init file"
+                    "contents": ""
                 }
             ]
         },
         {
             "name": "test",
             "is_file": false,
+            "is_package": false,
             "children": [
                 {
                     "name": "test_sample.py",
@@ -49,13 +58,14 @@
                 {
                     "name": "__init__.py",
                     "is_file": true,
-                    "contents": "Init file"
+                    "contents": ""
                 }
             ]
         },
         {
             "name": "docs",
             "is_file": false,
+            "is_package": false,
             "children": []
         }
     ]
